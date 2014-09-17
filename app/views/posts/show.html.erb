@@ -1,0 +1,44 @@
+<p>
+	<% if @post.categories.any? %>
+	<strong>Categories:</strong>
+	<% @post.categories.each do |category| %>
+	<li>
+		<%= link_to category.name, category_path(category) %>
+	</li>
+	<% end %>
+	<% end%>
+</p>
+
+<p>
+	<strong>Title:</strong>
+	<%= @post.title %>
+</p>
+
+<p>
+	<strong>Description:</strong>
+	<%= @post.description %>
+</p>
+<% if @comment.errors.any? %>
+<h4>There are errors</h4>
+<% @comment.errors.full_messages.each do |msg| %>
+<li>
+	<%= msg %>
+</li>
+<% end %>
+<% end %>
+<% if logged_in? %>
+	<%= form_for [@post, @comment] do |f| %>
+		<%= f.label :body%>
+		<br>
+		<%= f.text_area :body%>
+		<br>
+		<%= f.submit 'Create Comment'%>
+		<% end %>
+		<% if @post.comments.any? %>
+		<h4>Comments</h4>
+		<% @post.comments.each do |comment| %>
+		<%= render 'comments/comment', comment: comment %>
+		<br>
+		<% end %>
+	<% end %>
+<% end %>

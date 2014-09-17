@@ -1,0 +1,24 @@
+<h3>Welcome!</h3>
+
+<p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
+
+<% if @categories.any? %>
+<h4>Listing categories</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Name</th>
+    </tr>    
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= link_to 'Edit', edit_category_path(category)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

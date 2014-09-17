@@ -1,0 +1,6 @@
+<% if error.errors.any? %>
+<h4>There are errors</h4>
+<% error.errors.full_messages.each do |msg| %>
+<li><%= msg%></li>
+<% end %>
+<% end %>

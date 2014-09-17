@@ -1,0 +1,9 @@
+<% show_post ||= false%>
+<div class="well span8">
+	<cm><%= comment.body %></cm>
+	<% if show_post %>
+		on <%= link_to comment.post.title, post_path(comment.post) %>
+	<% end %>
+	<br>
+	<span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+</div>

@@ -1,0 +1,15 @@
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+	<% if @category.posts.any? %>
+	<strong>Posts:</strong>
+	<% @category.posts.each do |post| %>
+	<li>
+		<%= link_to post.title, post_path(post) %>
+	</li>
+	<% end %>
+	<% end%>
+</p>
