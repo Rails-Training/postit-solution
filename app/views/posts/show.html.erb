@@ -28,17 +28,18 @@
 <% end %>
 <% if logged_in? %>
 	<%= form_for [@post, @comment] do |f| %>
-		<%= f.label :body%>
-		<br>
-		<%= f.text_area :body%>
-		<br>
-		<%= f.submit 'Create Comment'%>
-		<% end %>
-		<% if @post.comments.any? %>
-		<h4>Comments</h4>
-		<% @post.comments.each do |comment| %>
-		<%= render 'comments/comment', comment: comment %>
-		<br>
-		<% end %>
+	<%= f.label :body%>
+	<br>
+	<%= f.text_area :body%>
+	<br>
+	<%= f.submit 'Create Comment'%>
 	<% end %>
 <% end %>
+<% if @post.comments.any? %>
+	<h4>Comments</h4>
+	<% @post.comments.each do |comment| %>
+	<%= render 'comments/comment', comment: comment %>
+	<br>
+	<% end %>
+<% end %>
+
