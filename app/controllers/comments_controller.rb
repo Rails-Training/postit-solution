@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   before_action :retrieve_user
   
   def create
+    binding.pry
     @comment = @post.comments.build(check_params)
     @comment.creator = current_user
     if @comment.save
@@ -18,11 +19,19 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     @vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
     if @vote.valid?
-      flash[:notice] = 'Thanks for your vote'
+      respond_to do |format|
+        format.html {redirect_to :back, notice: 'Thanks for your vote'}
+        format.js
+      end
+      #flash[:notice] = 'Thanks for your vote'
     else
-      flash[:error] = 'Already voted'
+      respond_to do |format|
+        format.html {redirect_to :back, error: 'Already voted'}
+        format.js
+      end
+      #flash[:error] = 'Already voted'
     end
-    redirect_to :back
+    #redirect_to :back
   end
   
   private
@@ -32,7 +41,7 @@ class CommentsController < ApplicationController
   end
   
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
   end
   
 end

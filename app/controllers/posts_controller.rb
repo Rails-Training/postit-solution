@@ -41,11 +41,21 @@ class PostsController < ApplicationController
   def vote
     @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
     if @vote.valid?
-      flash[:notice] = "Thanks for your vote"
+      # uncomment for ajax
+      #respond_to do |format|
+        #format.html { redirect_to :back, notice: 'Thanks for your vote' }
+        #format.js
+      #end
+      flash[:notice] = 'Thanks for your vote'
     else
-      flash[:error] = "You can vote for #{@post.title} only once"
+      # uncomment for ajax
+      #respond_to do |format|
+        #format.html { redirect_to :back, error: "You can vote for #{@post.title} only once" }
+        #format.js
+      #end
+      flash[:error] = 'Already voted' # comment for ajax
     end
-    redirect_to :back
+    redirect_to :back # comment for ajax
   end
   
   private
@@ -55,7 +65,7 @@ class PostsController < ApplicationController
   end
  
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
   
 end
