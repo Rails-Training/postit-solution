@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base 
-  include VoteableLexSep, Sluggable
+  include VoteableLexSep, SluggableLexSep
   
   belongs_to :creator, foreign_key: :user_id, class_name: :User
   has_many :comments

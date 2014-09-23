@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Sluggable
+  include SluggableLexSep
   
   has_many :posts, foreign_key: :user_id
   has_many :comments, foreign_key: :user_id

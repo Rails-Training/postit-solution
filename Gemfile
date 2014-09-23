@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'voteable_lex_sep', path: '../voteable-gem'
+gem 'sluggable_lex_sep', path: '../sluggable-gem'
 
 group :doc do
   gem 'sdoc', require: false
