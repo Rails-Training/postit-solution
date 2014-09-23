@@ -15,7 +15,6 @@ class CategoriesController < ApplicationController
   end
   
   def create
-    binding.pry
     @category = Category.new(check_params);
     if @category.save
       flash[:notice] = "Category saved..."
