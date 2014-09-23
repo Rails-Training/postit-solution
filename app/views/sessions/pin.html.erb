@@ -1,0 +1,10 @@
+<p>Please provide the pin sent to your registered mobile to proceed</p>
+<div class='well'>
+	<%= form_tag '/pin' do %>
+		<div class='control-group'>
+			<%= label_tag :pin, 'Pin Number' %>
+			<%= text_field_tag :pin, params[:pin] || '' %>
+		</div>
+		<%= submit_tag 'Enter Pin', class: 'btn btn-success'%>
+	<% end %>
+</div>
