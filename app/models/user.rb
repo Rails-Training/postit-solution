@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
     self.slug
   end
   
+  def admin?
+    self.role != nil && self.role.downcase == 'admin'
+  end
+  
+  def moderator?
+    self.role != nil && self.role.downcase == 'moderator'
+  end
+  
   private
   
   def to_slug(name)

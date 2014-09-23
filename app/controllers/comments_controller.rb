@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   
   before_action :set_post
-  before_action :retrieve_user
+  before_action :require_user
   
   def create
     binding.pry

@@ -15,7 +15,7 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <%= render :category, obj: category %>
+        <td><%= render 'category', category: category %></td>
         <td><%= link_to 'Edit', edit_category_path(category)%></td>
       </tr>
     <% end %>

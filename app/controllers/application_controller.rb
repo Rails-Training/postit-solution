@@ -12,11 +12,20 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
   
-  def retrieve_user
+  def require_user
     if !logged_in?
       flash[:error] = 'You must login'
       redirect_to root_path      
     end
+  end
+  
+  def require_admin
+    access_denied unless current_user.admin?      
+  end
+  
+  def access_denied
+    flash[:error] = 'Unauthorized!!'
+    redirect_to root_path
   end
   
 end

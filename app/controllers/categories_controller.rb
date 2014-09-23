@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only:[:show,:edit,:update]
-  before_action :retrieve_user, except: [:index, :show ]
+  before_action :require_user, except: [:index, :show ]
+  before_action :require_admin, except: [:index, :show]
   
   def index
     @categories = Category.all
@@ -14,6 +15,7 @@ class CategoriesController < ApplicationController
   end
   
   def create
+    binding.pry
     @category = Category.new(check_params);
     if @category.save
       flash[:notice] = "Category saved..."
